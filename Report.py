@@ -2,11 +2,13 @@ import seaborn as sns
 from sklearn.metrics import confusion_matrix, classification_report
 import matplotlib.pyplot as plt
 
-def Report(predictions, labels):
+def Report(name, predictions, labels):
     cf_matrix = confusion_matrix(labels, predictions)
     ax = sns.heatmap(cf_matrix, annot=True, cmap='Blues')
-    ax.set_title('Confusion Matrix\n')
+    ax.set_title(f'Confusion Matrix {name}\n')
     ax.set_xlabel('Predictions')
     ax.set_ylabel('Labels')
+    plt.savefig(name + ".png")
     plt.show()
-    print(classification_report(labels, predictions))
+    print(name)
+    print(classification_report(labels, predictions) + '\n')
